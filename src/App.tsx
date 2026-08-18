@@ -7,7 +7,6 @@ import {
   Menu,
   X,
   ChevronDown,
-  ChevronRight,
   Leaf,
   ShieldCheck,
   Truck,
@@ -15,9 +14,9 @@ import {
   RotateCcw,
   Sparkles,
   Bot,
-  Instagram,
-  Facebook,
-  Twitter,
+  Share2,
+  Globe,
+  Send,
   Clock,
   Plus,
   Minus,
@@ -26,6 +25,7 @@ import {
   Percent,
   Star,
   ArrowRight,
+  ChevronRight,
   Scissors,
   Milk,
   Egg,
@@ -34,241 +34,150 @@ import {
   Flower2,
   Grid3x3,
   Salad,
-  Coffee,
   Check,
-  Zap,
-  ShoppingBag,
-  Send,
-  type LucideIcon,
+  Coffee,
+  CreditCard,
+  Heart,
+  Phone,
+  Mail,
+  Smartphone,
+  Shield,
+  Award,
 } from "lucide-react";
 
-// Generated high-resolution assets matching the exact design
-import heroBasketImg from "./assets/images/hero_basket_1786973680514.jpg";
-import deliveryBagImg from "./assets/images/delivery_bag_1786973692429.jpg";
-import flashProduceImg from "./assets/images/flash_produce_1786973705257.jpg";
-import prodTomatoImg from "./assets/images/prod_tomato_1786973722777.jpg";
-import prodOnionImg from "./assets/images/prod_onion_1786973739658.jpg";
-import prodPotatoImg from "./assets/images/prod_potato_1786973750758.jpg";
-import prodBananaImg from "./assets/images/prod_banana_1786973760652.jpg";
-import prodAppleImg from "./assets/images/prod_apple_1786973779694.jpg";
-import spinWheelImg from "./assets/images/spin_wheel_1786973791103.jpg";
+// Real uploaded brand assets
+import logoImg from "./assets/images/logo.png";
+import heroBasket from "./assets/images/hero-basket-removebg-preview.png";
+import flashSaleBanner from "./assets/images/flash_sale_fresh_1787042855288.jpg";
+import coolerBag from "./assets/images/veggo_cooler_bag_1787042808407.jpg";
 
 /* ---------------------------------------------------------------------- */
-/*  Brand Design Tokens & Theme                                           */
+/*  Figma Brand Color Palette                                             */
 /* ---------------------------------------------------------------------- */
 const BRAND = {
-  green900: "#133E19",
-  green800: "#1A5223",
-  green700: "#1E652B",
-  green600: "#248337",
-  green500: "#2E9E44",
-  green100: "#EAF6EA",
-  green50: "#F5FAF4",
-  cream: "#FDF8EC",
-  creamSale: "#FBF4EA",
-  gold: "#E09C2C",
-  goldLight: "#F5BD58",
-  red: "#E23B3B",
-  ink: "#1A241D",
-  slate: "#59685E",
-  borderLight: "#EEF3ED",
+  forestGreen: "#135029", // Primary CTA button & dark green
+  leafGreen: "#228B22",   // Fresh accent green
+  lightMintBg: "#EAF5E9", // Hero & membership container background
+  sidebarBg: "#F4FAF4",   // Category sidebar background
+  bannerDark: "#0E4823",  // Bottom promo bar background
+  creamSale: "#FAF5EA",   // Flash sale container background
+  textDark: "#111827",    // Main headings
+  textMuted: "#5F6D63",   // Body/descriptions
+  borderLight: "#E2EFE0", // Subtle card borders
+  badgeRed: "#E03838",
+  badgeGold: "#EAA023",
 };
 
 /* ---------------------------------------------------------------------- */
-/*  Static Category Data                                                  */
+/*  Category items from Figma                                             */
 /* ---------------------------------------------------------------------- */
-interface CategoryItem {
-  id: string;
-  name: string;
-  icon: LucideIcon;
-  color?: string;
-}
-
-const CATEGORIES: CategoryItem[] = [
-  { id: "veg", name: "Vegetables", icon: Leaf, color: "#2E7D32" },
-  { id: "fruits", name: "Fruits", icon: Cherry, color: "#E8622C" },
-  { id: "greens", name: "Leafy Greens", icon: Salad, color: "#43A047" },
-  { id: "herbs", name: "Herbs & Seasoning", icon: Scissors, color: "#2E7D32" },
-  { id: "exotic", name: "Exotic Vegetables", icon: Sparkles, color: "#8E24AA" },
-  { id: "dairy", name: "Dairy Products", icon: Milk, color: "#0288D1" },
-  { id: "eggs", name: "Eggs", icon: Egg, color: "#F57C00" },
-  { id: "grains", name: "Pulses & Grains", icon: Wheat, color: "#8D6E63" },
-  { id: "rice", name: "Rice & Millets", icon: Grid3x3, color: "#795548" },
-  { id: "beverages", name: "Beverages", icon: Coffee, color: "#00897B" },
-  { id: "plants", name: "Plants & Pots", icon: Flower2, color: "#388E3C" },
+const CATEGORIES = [
+  { name: "Vegetables", icon: Salad, active: true },
+  { name: "Fruits", icon: Cherry },
+  { name: "Leafy Greens", icon: Leaf },
+  { name: "Herbs & Seasoning", icon: Scissors },
+  { name: "Exotic Vegetables", icon: Sparkles },
+  { name: "Dairy Products", icon: Milk },
+  { name: "Eggs", icon: Egg },
+  { name: "Pulses & Grains", icon: Wheat },
+  { name: "Rice & Millets", icon: Grid3x3 },
+  { name: "Beverages", icon: Coffee },
+  { name: "Plants & Pots", icon: Flower2 },
 ];
 
 /* ---------------------------------------------------------------------- */
-/*  Feature Value Propositions                                            */
+/*  6 Trust / Value propositions from Figma                               */
 /* ---------------------------------------------------------------------- */
-interface FeatureItem {
-  icon: LucideIcon;
-  title: string;
-  sub: string;
-}
-
-const FEATURES: FeatureItem[] = [
+const FEATURES = [
   { icon: Leaf, title: "Farm Fresh", sub: "Handpicked Daily" },
   { icon: ShieldCheck, title: "No Chemicals", sub: "Pure & Healthy" },
   { icon: Truck, title: "30–45 mins Delivery", sub: "Fast & Reliable" },
-  { icon: ShieldCheck, title: "Secure Payments", sub: "100% Safe" },
+  { icon: CreditCard, title: "Secure Payments", sub: "100% Safe" },
   { icon: Tag, title: "Best Prices", sub: "On All Products" },
   { icon: RotateCcw, title: "Easy Returns", sub: "Hassle Free" },
 ];
 
 /* ---------------------------------------------------------------------- */
-/*  Best Selling Products Data                                            */
+/*  Best Selling Products (Rich Style in 1 Single Line of 5 Items)        */
 /* ---------------------------------------------------------------------- */
-interface ProductItem {
+interface Product {
   id: string;
   name: string;
   weight: string;
   price: number;
   mrp: number;
-  image: string;
-  category: string;
+  discount: string;
+  rating: number;
+  reviews: number;
+  tag?: string;
+  img: string;
 }
 
-const PRODUCTS: ProductItem[] = [
+const PRODUCTS: Product[] = [
   {
     id: "tomato",
-    name: "Tomato",
+    name: "Farm Fresh Tomato",
     weight: "1 kg",
-    price: 25.0,
-    mrp: 35.0,
-    image: prodTomatoImg,
-    category: "veg",
+    price: 25,
+    mrp: 35,
+    discount: "28% OFF",
+    rating: 4.8,
+    reviews: 142,
+    tag: "Fresh Pick",
+    img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: "onion",
-    name: "Onion",
+    name: "Red Nashik Onion",
     weight: "1 kg",
-    price: 28.0,
-    mrp: 40.0,
-    image: prodOnionImg,
-    category: "veg",
+    price: 28,
+    mrp: 40,
+    discount: "30% OFF",
+    rating: 4.9,
+    reviews: 210,
+    tag: "Daily Essential",
+    img: "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: "potato",
-    name: "Potato",
+    name: "Golden Baby Potato",
     weight: "1 kg",
-    price: 22.0,
-    mrp: 30.0,
-    image: prodPotatoImg,
-    category: "veg",
+    price: 22,
+    mrp: 30,
+    discount: "26% OFF",
+    rating: 4.7,
+    reviews: 98,
+    tag: "Bestseller",
+    img: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: "banana",
-    name: "Banana",
+    name: "Robusta Banana",
     weight: "1 dozen",
-    price: 40.0,
-    mrp: 60.0,
-    image: prodBananaImg,
-    category: "fruits",
+    price: 40,
+    mrp: 60,
+    discount: "33% OFF",
+    rating: 4.9,
+    reviews: 312,
+    tag: "Organic",
+    img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: "apple",
-    name: "Apple",
-    weight: "4 pcs",
-    price: 120.0,
-    mrp: 160.0,
-    image: prodAppleImg,
-    category: "fruits",
+    name: "Shimla Royal Apple",
+    weight: "4 pcs (~600g)",
+    price: 120,
+    mrp: 160,
+    discount: "25% OFF",
+    rating: 4.9,
+    reviews: 184,
+    tag: "Premium",
+    img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=400&q=80",
   },
 ];
 
 /* ---------------------------------------------------------------------- */
-/*  Promotional Offer Cards                                               */
-/* ---------------------------------------------------------------------- */
-interface PromoCard {
-  id: string;
-  icon: LucideIcon;
-  title: string;
-  sub: string;
-  cta: string;
-  action: string;
-}
-
-const PROMOS: PromoCard[] = [
-  {
-    id: "spin",
-    icon: Gift,
-    title: "Spin & Win",
-    sub: "Win exciting rewards everyday",
-    cta: "Spin Now",
-    action: "spin",
-  },
-  {
-    id: "buyagain",
-    icon: Repeat,
-    title: "Buy Again",
-    sub: "Reorder your favourite items",
-    cta: "Buy Again",
-    action: "reorder",
-  },
-  {
-    id: "recommendations",
-    icon: Star,
-    title: "Smart Recommendations",
-    sub: "Handpicked for you based on your choice",
-    cta: "Explore",
-    action: "recommendations",
-  },
-  {
-    id: "offers",
-    icon: Percent,
-    title: "Today's Offers",
-    sub: "Grab the best deals of the day!",
-    cta: "View Offers",
-    action: "offers",
-  },
-];
-
-/* ---------------------------------------------------------------------- */
-/*  Scroll Reveal Hook                                                    */
-/* ---------------------------------------------------------------------- */
-function useReveal(): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    obs.observe(node);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible];
-}
-
-const Reveal: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({
-  children,
-  delay = 0,
-  className = "",
-}) => {
-  const [ref, visible] = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
-
-/* ---------------------------------------------------------------------- */
-/*  Countdown Timer Hook                                                  */
+/*  Countdown Hook for Flash Sale                                         */
 /* ---------------------------------------------------------------------- */
 function useCountdown(initialSeconds: number) {
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -288,918 +197,762 @@ function useCountdown(initialSeconds: number) {
 /*  Main Application Component                                            */
 /* ---------------------------------------------------------------------- */
 export default function App() {
-  // Initial cart with items to reflect ₹276.00 as in the design
   const [cart, setCart] = useState<Record<string, number>>({
-    tomato: 2, // 2 x 25 = 50
-    onion: 1,  // 1 x 28 = 28
-    apple: 1,  // 1 x 120 = 120
-    banana: 1, // 1 x 40 = 40
-    potato: 1, // 1 x 22 = 22 -> 50 + 28 + 120 + 40 + 22 = 260 + ~delivery
+    tomato: 1,
+    banana: 1,
+    apple: 1,
   });
-
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchCategory, setSearchCategory] = useState("All");
-  const [isSearchCategoryOpen, setIsSearchCategoryOpen] = useState(false);
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({
+    tomato: true,
+    apple: true,
+  });
   const [mobileNav, setMobileNav] = useState(false);
-  const [mobileCats, setMobileCats] = useState(false);
-  const [activeLocation, setActiveLocation] = useState("Kukatpally, Hyderabad");
-  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
-  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
-  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
-  const [isSpinModalOpen, setIsSpinModalOpen] = useState(false);
-  const [isSpinning, setIsSpinning] = useState(false);
-  const [spinReward, setSpinReward] = useState<string | null>(null);
-  const [spinAngle, setSpinAngle] = useState(0);
-  const [aiChat, setAiChat] = useState<Array<{ sender: "user" | "bot"; text: string }>>([
-    {
-      sender: "bot",
-      text: "Hello Shiva! 🌿 I am your VegGo Fresh AI Assistant. How can I help you eat fresh today? I can suggest meal recipes, seasonal fruits, or assemble a sambar vegetable pack for you!",
-    },
-  ]);
-  const [aiInput, setAiInput] = useState("");
-
+  const [cartOpen, setCartOpen] = useState(false);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Vegetables");
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
   const { h, m, s } = useCountdown(2 * 3600 + 45 * 60 + 30);
 
-  // Load Google Fonts
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap";
-    document.head.appendChild(link);
-    return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    };
-  }, []);
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(null), 2500);
+  };
 
   const addToCart = useCallback((id: string) => {
-    setCart((c) => ({ ...c, [id]: (c[id] || 0) + 1 }));
+    setCart((prev) => {
+      const next = { ...prev, [id]: (prev[id] || 0) + 1 };
+      const item = PRODUCTS.find((p) => p.id === id);
+      showToast(`Added ${item?.name || "item"} to cart`);
+      return next;
+    });
   }, []);
 
   const removeFromCart = useCallback((id: string) => {
-    setCart((c) => {
-      const next = { ...c };
+    setCart((prev) => {
+      const next = { ...prev };
       if (next[id] > 1) next[id] -= 1;
       else delete next[id];
       return next;
     });
   }, []);
 
-  const cartCount = Object.values(cart).reduce<number>((a, b) => a + Number(b), 0);
-  const cartTotal = (Object.entries(cart) as [string, number][]).reduce<number>((sum, [id, qty]) => {
+  const toggleFavorite = (id: string) => {
+    setFavorites((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      showToast(next[id] ? "Saved to wishlist" : "Removed from wishlist");
+      return next;
+    });
+  };
+
+  const cartCount = (Object.values(cart) as number[]).reduce((a, b) => a + b, 0);
+  const cartTotal = (Object.entries(cart) as [string, number][]).reduce((sum, [id, qty]) => {
     const p = PRODUCTS.find((prod) => prod.id === id);
-    return sum + (p ? p.price * Number(qty) : 0);
+    return sum + (p ? p.price * qty : 0);
   }, 0);
 
-  // Handle spin the wheel
-  const handleSpinWheel = () => {
-    if (isSpinning) return;
-    setIsSpinning(true);
-    setSpinReward(null);
-    const newAngle = spinAngle + 1440 + Math.floor(Math.random() * 360);
-    setSpinAngle(newAngle);
-
-    setTimeout(() => {
-      setIsSpinning(false);
-      const rewards = [
-        "🎉 20% OFF on Fresh Fruits",
-        "🚚 Free Instant Delivery",
-        "🍎 Free 500g Royal Gala Apples",
-        "💰 ₹50 Cashback on next order",
-        "🎁 Free Coriander & Mint Bunch",
-      ];
-      setSpinReward(rewards[Math.floor(Math.random() * rewards.length)]);
-    }, 3500);
-  };
-
-  // Handle AI Chat
-  const handleSendAiMessage = () => {
-    if (!aiInput.trim()) return;
-    const userMsg = aiInput.trim();
-    setAiChat((prev) => [...prev, { sender: "user", text: userMsg }]);
-    setAiInput("");
-
-    setTimeout(() => {
-      let botResponse =
-        "Great choice! I have checked our local Kukatpally warehouse and farm stocks. All items are farm-harvested this morning with 100% quality guarantee.";
-      const lower = userMsg.toLowerCase();
-      if (lower.includes("sambar") || lower.includes("curry") || lower.includes("recipe")) {
-        botResponse =
-          "For traditional Sambar, you need: 1. Tomatoes (2 pcs), 2. Drumstick (1 pc), 3. Small Onions / Shallots (250g), 4. Bottle Gourd / Pumpkin, 5. Fresh Curry Leaves. Would you like me to add this 1-click Sambar kit to your cart for ₹65?";
-      } else if (lower.includes("diet") || lower.includes("weight") || lower.includes("salad")) {
-        botResponse =
-          "For a wholesome low-calorie salad bowl, I recommend: Fresh English Cucumbers, Red Cherry Tomatoes, Crisp Romaine Lettuce, and Lemon. Total Calories: ~95 kcal. Delivery in 30 mins!";
-      } else if (lower.includes("offer") || lower.includes("discount") || lower.includes("code")) {
-        botResponse =
-          "Active coupons for you: 🏷️ 'VEGFRESH50' for ₹50 off on orders above ₹249, or join VegGo Plus for zero delivery charges forever!";
-      }
-      setAiChat((prev) => [...prev, { sender: "bot", text: botResponse }]);
-    }, 600);
-  };
-
-  const fontDisplay = { fontFamily: "'Outfit', sans-serif" };
-  const fontBody = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-
-  // Filter products based on search
-  const filteredProducts = PRODUCTS.filter((p) => {
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCat =
-      selectedCategory === "all" ||
-      p.category === selectedCategory ||
-      (selectedCategory === "veg" && (p.id === "tomato" || p.id === "onion" || p.id === "potato")) ||
-      (selectedCategory === "fruits" && (p.id === "banana" || p.id === "apple"));
-    return matchesSearch && matchesCat;
-  });
+  const fontHead = { fontFamily: "'Poppins', sans-serif" };
+  const fontBody = { fontFamily: "'Inter', sans-serif" };
 
   return (
-    <div id="veggo-root" className="min-h-screen bg-white text-[#1B2420]" style={fontBody}>
-      {/* ================= GLOBAL FLOATING STYLES ================= */}
-      <style>{`
-        @keyframes floatSlow { 0%,100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
-        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(36,131,55, 0.4); } 100% { box-shadow: 0 0 0 16px rgba(36,131,55, 0); } }
-        .anim-float-basket { animation: floatSlow 5s ease-in-out infinite; }
-        .anim-pulse-ai { animation: pulseGlow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-      `}</style>
+    <div className="min-h-screen bg-[#FBFDFB] text-slate-800 flex flex-col" style={fontBody}>
+      {/* ================= TOAST ================= */}
+      {toastMsg && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#135029] text-white px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-semibold animate-fade-in border border-emerald-400/30">
+          <Check className="w-4 h-4 text-emerald-300" />
+          <span>{toastMsg}</span>
+        </div>
+      )}
 
-      {/* ================= 1. TOP UTILITY BAR ================= */}
-      <div
-        id="top-utility-bar"
-        className="hidden md:flex items-center justify-between px-6 lg:px-12 py-2 text-xs border-b border-[#E1EDE1]"
-        style={{ backgroundColor: BRAND.green100, color: BRAND.green800 }}
-      >
-        {/* Left tagline */}
+      {/* ================= TOP UTILITY BAR ================= */}
+      <div className="bg-[#EAF6EA] text-[#1E5F26] border-b border-[#D8EBD7] px-4 lg:px-10 py-1.5 text-xs hidden md:flex items-center justify-between">
+        {/* Left */}
         <div className="flex items-center gap-1.5 font-medium">
-          <Leaf className="w-3.5 h-3.5 text-[#248337]" />
+          <Leaf className="w-3.5 h-3.5 text-[#228B22]" />
           <span>Eat Fresh, Live Healthy</span>
         </div>
 
-        {/* Center Delivery Address Selector */}
-        <div
-          id="location-picker-btn"
-          onClick={() => setIsLocationModalOpen(true)}
-          className="flex items-center gap-1.5 cursor-pointer hover:text-black transition-colors font-medium"
-        >
-          <MapPin className="w-3.5 h-3.5 text-[#248337]" />
-          <span>Delivering to: <strong className="font-semibold">{activeLocation}</strong></span>
-          <ChevronDown className="w-3 h-3 text-[#248337]" />
+        {/* Center */}
+        <div className="flex items-center gap-1 cursor-pointer hover:opacity-90 transition">
+          <MapPin className="w-3.5 h-3.5 text-[#228B22]" />
+          <span>Delivering to: <strong className="font-semibold text-[#113B1E]">Kukatpally, Hyderabad</strong></span>
+          <ChevronDown className="w-3 h-3 text-slate-500 ml-0.5" />
         </div>
 
-        {/* Right Quick Links & Socials */}
-        <div className="flex items-center gap-4 text-xs font-normal">
-          <button onClick={() => alert("Vendor Registration opens in Kukatpally zone soon!")} className="hover:underline cursor-pointer">
+        {/* Right */}
+        <div className="flex items-center gap-4 text-[11px] font-medium text-[#1E5F26]">
+          <button onClick={() => showToast("Seller portal opening soon")} className="hover:underline">
             Become a Seller
           </button>
-          <span className="text-[#C4D9C4]">|</span>
-          <button onClick={() => setIsSpinModalOpen(true)} className="hover:underline cursor-pointer">
+          <span className="text-[#C2DEC1]">|</span>
+          <button onClick={() => showToast("Special 50% discount code active: FRESH50")} className="hover:underline">
             Offers
           </button>
-          <span className="text-[#C4D9C4]">|</span>
-          <button onClick={() => setIsAiModalOpen(true)} className="hover:underline cursor-pointer">
+          <span className="text-[#C2DEC1]">|</span>
+          <button onClick={() => showToast("Support: support@veggofresh.com")} className="hover:underline">
             Help &amp; Support
           </button>
-          <div className="flex items-center gap-3 pl-2 border-l border-[#CFE6CF] text-[#248337]">
-            <a href="#instagram" className="hover:opacity-75 transition" aria-label="Instagram"><Instagram className="w-3.5 h-3.5" /></a>
-            <a href="#facebook" className="hover:opacity-75 transition" aria-label="Facebook"><Facebook className="w-3.5 h-3.5" /></a>
-            <a href="#twitter" className="hover:opacity-75 transition" aria-label="Twitter"><Twitter className="w-3.5 h-3.5" /></a>
+          <div className="flex items-center gap-2.5 ml-2 pl-3 border-l border-[#C2DEC1]">
+            <Share2 className="w-3.5 h-3.5 cursor-pointer hover:text-black transition" />
+            <Globe className="w-3.5 h-3.5 cursor-pointer hover:text-black transition" />
+            <Send className="w-3.5 h-3.5 cursor-pointer hover:text-black transition" />
           </div>
         </div>
       </div>
 
-      {/* ================= 2. MAIN HEADER & SEARCH ================= */}
-      <header
-        id="main-navigation-header"
-        className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#EEF3ED] shadow-xs"
-      >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between gap-3 md:gap-6">
-          {/* Mobile hamburger menu */}
+      {/* ================= MAIN HEADER NAVBAR ================= */}
+      <header className="sticky top-0 z-40 bg-white border-b border-[#EEF4ED] shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+        <div className="max-w-[1400px] mx-auto px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+          {/* Mobile hamburger */}
           <button
-            id="mobile-nav-toggle"
             onClick={() => setMobileNav(true)}
-            className="md:hidden p-1.5 rounded-lg hover:bg-gray-100 cursor-pointer"
+            className="lg:hidden p-1.5 rounded-lg hover:bg-emerald-50 text-slate-700"
             aria-label="Open menu"
           >
-            <Menu className="w-6 h-6 text-[#1A5223]" />
+            <Menu className="w-6 h-6" />
           </button>
 
-          {/* Authentic VegGo Brand Logo */}
-          <div
-            id="veggo-logo-container"
-            onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}
-            className="flex items-center gap-2.5 cursor-pointer shrink-0 select-none"
-          >
-            {/* Custom stylized Leaf & V emblem matching the brand logo */}
-            <div className="relative w-9 h-9 flex items-center justify-center">
-              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xs">
-                {/* Sprouting Green Leaves */}
-                <path
-                  d="M25,48 C20,25 38,10 58,12 C62,28 50,45 25,48 Z"
-                  fill="url(#leafGrad1)"
-                />
-                <path
-                  d="M48,32 C58,15 78,16 82,32 C75,44 58,45 48,32 Z"
-                  fill="url(#leafGrad2)"
-                />
-                {/* Golden 'V' Character */}
-                <path
-                  d="M32,45 L50,88 L72,40 L60,40 L50,70 L39,45 Z"
-                  fill="url(#goldGrad)"
-                />
-                <defs>
-                  <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#43A047" />
-                    <stop offset="100%" stopColor="#1B5E20" />
-                  </linearGradient>
-                  <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#81C784" />
-                    <stop offset="100%" stopColor="#2E7D32" />
-                  </linearGradient>
-                  <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F5BD58" />
-                    <stop offset="100%" stopColor="#D48B1E" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-            {/* Typography */}
-            <div className="flex flex-col leading-none">
-              <div className="flex items-baseline" style={fontDisplay}>
-                <span className="text-2xl font-black tracking-tight text-[#1E652B]">Veg</span>
-                <span className="text-2xl font-black tracking-tight text-[#D48B1E] flex items-center">
-                  G<span className="relative">o<span className="absolute -top-1 right-0 text-[10px] text-[#2E7D32]">🍃</span></span>
-                </span>
-              </div>
-              <div className="flex items-center tracking-[0.22em] text-[8.5px] font-bold text-[#6D7D72] mt-0.5">
-                <span>— FRESH —</span>
-              </div>
-            </div>
+          {/* Logo Image from User Asset */}
+          <div className="flex items-center cursor-pointer shrink-0">
+            <img src={logoImg} alt="VegGo FRESH" className="h-10 md:h-11 w-auto object-contain" />
           </div>
 
-          {/* 'All Categories' button - Desktop */}
+          {/* "All Categories" Button */}
           <button
-            id="all-categories-btn"
-            onClick={() => setMobileCats((v) => !v)}
-            className="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-lg text-white text-sm font-semibold shrink-0 cursor-pointer shadow-xs hover:brightness-95 transition"
-            style={{ backgroundColor: BRAND.green800 }}
+            id="header-all-categories"
+            onClick={() => showToast("All categories menu clicked")}
+            className="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-lg text-white text-xs font-bold tracking-wide shrink-0 transition hover:brightness-105 active:scale-98 shadow-2xs"
+            style={{ backgroundColor: BRAND.forestGreen }}
           >
             <Menu className="w-4 h-4" />
             <span>All Categories</span>
           </button>
 
-          {/* Central Search Bar */}
-          <div
-            id="global-search-bar"
-            className="flex-1 hidden sm:flex items-center border border-[#DCE7DA] rounded-lg overflow-hidden bg-white focus-within:border-[#248337] focus-within:ring-1 focus-within:ring-[#248337]/20 transition-all"
-          >
+          {/* Search Input Bar */}
+          <div className="flex-1 max-w-xl hidden sm:flex items-center border border-[#DCE8DA] rounded-lg overflow-hidden bg-white focus-within:ring-2 focus-within:ring-[#228B22]/30 transition">
             <input
-              id="search-input-field"
-              type="text"
+              id="header-search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for vegetables, fruits and more..."
-              className="flex-1 px-4 py-2.5 text-sm outline-hidden text-[#1A241D] placeholder-[#8F9E93] min-w-0"
+              className="flex-1 px-4 py-2 text-xs md:text-sm outline-none text-slate-700 placeholder:text-slate-400 min-w-0"
             />
-
-            {/* Category Filter dropdown in search */}
-            <div className="relative">
-              <button
-                id="search-category-dropdown-btn"
-                type="button"
-                onClick={() => setIsSearchCategoryOpen((v) => !v)}
-                className="hidden md:flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#59685E] border-l border-[#DCE7DA] hover:bg-gray-50 cursor-pointer"
-              >
-                <span>{searchCategory}</span>
-                <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
-              </button>
-
-              {isSearchCategoryOpen && (
-                <div className="absolute right-0 top-full mt-1 w-44 bg-white border border-[#DCE7DA] rounded-lg shadow-lg py-1.5 z-50">
-                  {["All", "Vegetables", "Fruits", "Leafy Greens", "Dairy"].map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSearchCategory(cat);
-                        setIsSearchCategoryOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs hover:bg-[#EAF6EA] hover:text-[#1E652B] transition-colors"
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              )}
+            <div className="flex items-center gap-1 px-3 border-l border-[#DCE8DA] text-xs text-slate-500 bg-slate-50/50 cursor-pointer">
+              <span>All</span>
+              <ChevronDown className="w-3 h-3 text-slate-400" />
             </div>
-
-            {/* Green search action button */}
             <button
-              id="search-action-btn"
-              className="px-4 py-2.5 text-white flex items-center justify-center cursor-pointer hover:brightness-95 transition"
-              style={{ backgroundColor: BRAND.green800 }}
-              aria-label="Submit search"
+              onClick={() => showToast(`Searching for "${searchQuery || "fresh produce"}"`)}
+              className="px-3.5 py-2.5 text-white transition hover:brightness-105"
+              style={{ backgroundColor: BRAND.forestGreen }}
+              aria-label="Search"
             >
               <Search className="w-4 h-4" />
             </button>
           </div>
 
-          {/* VegGo AI Assistant Button */}
-          <div
-            id="veggo-ai-top-widget"
-            onClick={() => setIsAiModalOpen(true)}
-            className="hidden lg:flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-[#D5EAD5] cursor-pointer hover:border-[#248337] transition-all bg-[#F5FAF4] hover:shadow-xs select-none"
-          >
-            <div className="w-7 h-7 rounded-full bg-[#133E19] flex items-center justify-center text-white shadow-xs">
-              <Bot className="w-4 h-4 text-[#81C784]" />
-            </div>
-            <div className="leading-none text-left pr-1">
-              <div className="text-xs font-bold text-[#133E19]">VegGo</div>
-              <div className="text-[10px] text-[#59685E] font-medium">AI Assistant</div>
-            </div>
-          </div>
-
-          {/* User Account / Profile */}
-          <div
-            id="user-account-menu"
-            onClick={() => alert("Logged in as Shiva (Kukatpally Prime Member)")}
-            className="hidden md:flex items-center gap-2 cursor-pointer hover:opacity-85 select-none"
-          >
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-[#1A241D]">
-              <User className="w-4 h-4" />
-            </div>
-            <div className="leading-tight text-left">
-              <div className="text-[11px] text-[#59685E]">My Account</div>
-              <div className="text-xs font-semibold text-[#1A241D] flex items-center gap-1">
-                <span>Hello, Shiva</span>
-                <ChevronDown className="w-3 h-3 text-[#59685E]" />
+          {/* Right Header Utilities */}
+          <div className="flex items-center gap-4 md:gap-6">
+            {/* VegGo AI Assistant Button Widget */}
+            <div
+              id="header-ai-assistant"
+              onClick={() => setAiModalOpen(true)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#F0F8EE] border border-[#D5EAD3] cursor-pointer hover:bg-[#E5F3E3] transition shadow-2xs"
+            >
+              <div className="w-7 h-7 rounded-full bg-[#135029] flex items-center justify-center text-emerald-200">
+                <Bot className="w-4 h-4" />
+              </div>
+              <div className="leading-tight text-left hidden sm:block">
+                <div className="text-[11px] font-bold text-[#113B1E]">VegGo</div>
+                <div className="text-[9px] text-[#4A7C54] font-medium">AI Assistant</div>
               </div>
             </div>
-          </div>
 
-          {/* Cart Widget Button */}
-          <div
-            id="header-cart-btn"
-            onClick={() => setIsCartDrawerOpen(true)}
-            className="flex items-center gap-2.5 cursor-pointer bg-[#F5FAF4] hover:bg-[#EAF6EA] border border-[#DCE7DA] px-3 py-1.5 rounded-xl transition-all select-none"
-          >
-            <div className="relative flex items-center">
-              <ShoppingCart className="w-5 h-5 text-[#133E19]" />
-              {cartCount > 0 && (
+            {/* My Account */}
+            <div
+              id="header-my-account"
+              onClick={() => showToast("Account: Hello Shiva")}
+              className="hidden md:flex items-center gap-2 cursor-pointer hover:opacity-80 transition"
+            >
+              <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 bg-slate-50">
+                <User className="w-4 h-4" />
+              </div>
+              <div className="leading-tight text-left">
+                <div className="text-[10px] text-slate-500 font-medium">My Account</div>
+                <div className="text-xs font-bold text-slate-800 flex items-center gap-0.5">
+                  <span>Hello, Shiva</span>
+                  <ChevronDown className="w-3 h-3 text-slate-400" />
+                </div>
+              </div>
+            </div>
+
+            {/* Cart Trigger */}
+            <div
+              id="header-cart-btn"
+              onClick={() => setCartOpen(true)}
+              className="flex items-center gap-2.5 cursor-pointer hover:opacity-90 transition select-none"
+            >
+              <div className="relative">
+                <ShoppingCart className="w-6 h-6 text-[#111827]" />
                 <span
-                  id="cart-items-counter-badge"
-                  className="absolute -top-2.5 -right-2 text-[10px] w-4 h-4 rounded-full flex items-center justify-center text-white font-bold shadow-xs"
-                  style={{ backgroundColor: BRAND.green800 }}
+                  className="absolute -top-2 -right-2 text-[10px] w-4 h-4 rounded-full flex items-center justify-center text-white font-extrabold shadow-2xs"
+                  style={{ backgroundColor: BRAND.forestGreen }}
                 >
                   {cartCount}
                 </span>
-              )}
-            </div>
-            <div className="hidden sm:block leading-tight text-left">
-              <div className="text-[10px] text-[#59685E] font-medium">Cart</div>
-              <div id="cart-header-amount" className="text-xs font-bold text-[#133E19]">
-                ₹{cartTotal.toFixed(2)}
+              </div>
+              <div className="leading-tight text-left hidden sm:block">
+                <div className="text-[10px] text-slate-500 font-medium">Cart</div>
+                <div className="text-xs font-bold text-[#111827]">₹{cartTotal.toFixed(2)}</div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Dropdown Category Grid when 'All Categories' is clicked */}
-        {mobileCats && (
-          <div className="hidden lg:grid grid-cols-6 gap-2 max-w-[1440px] mx-auto px-12 py-4 border-t border-[#EEF3ED] bg-white animate-in fade-in slide-in-from-top-2 duration-200">
-            {CATEGORIES.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => {
-                  setSelectedCategory(c.id);
-                  setMobileCats(false);
-                }}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium cursor-pointer transition-colors text-left ${
-                  selectedCategory === c.id ? "bg-[#EAF6EA] text-[#1E652B] font-bold" : "hover:bg-gray-50 text-[#1A241D]"
-                }`}
-              >
-                <c.icon className="w-4 h-4 text-[#248337]" />
-                <span>{c.name}</span>
-              </button>
-            ))}
-          </div>
-        )}
       </header>
 
-      {/* ================= MOBILE NAVIGATION DRAWER ================= */}
-      {mobileNav && (
-        <div className="fixed inset-0 z-50 flex animate-in fade-in duration-200">
-          <div className="w-80 bg-white h-full shadow-2xl p-5 overflow-y-auto flex flex-col">
-            <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-black text-[#1E652B]" style={fontDisplay}>VegGo</span>
-                <span className="text-[9px] bg-[#EAF6EA] text-[#1E652B] font-bold px-2 py-0.5 rounded-full">FRESH</span>
-              </div>
-              <button
-                onClick={() => setMobileNav(false)}
-                className="p-1 rounded-lg hover:bg-gray-100 cursor-pointer"
-                aria-label="Close navigation"
-              >
-                <X className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Mobile Search */}
-            <div className="flex items-center border border-[#DCE7DA] rounded-lg overflow-hidden my-4">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search produce..."
-                className="flex-1 px-3 py-2 text-xs outline-hidden min-w-0"
-              />
-              <button className="px-3 py-2 bg-[#1E652B] text-white">
-                <Search className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Categories */}
-            <div className="text-xs font-bold uppercase text-[#59685E] tracking-wider mb-2">Categories</div>
-            <div className="space-y-1 flex-1">
-              {CATEGORIES.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => {
-                    setSelectedCategory(c.id);
-                    setMobileNav(false);
-                  }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-left ${
-                    selectedCategory === c.id ? "bg-[#EAF6EA] text-[#1E652B] font-bold" : "text-[#1A241D] hover:bg-gray-50"
-                  }`}
-                >
-                  <c.icon className="w-4 h-4 text-[#248337]" />
-                  <span>{c.name}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Account info */}
-            <div className="pt-4 border-t border-gray-100 mt-4 text-xs text-[#59685E]">
-              <div>Logged in as <strong>Shiva</strong></div>
-              <div className="flex items-center gap-1 mt-1 text-[#248337]">
-                <MapPin className="w-3 h-3" /> {activeLocation}
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 bg-black/50" onClick={() => setMobileNav(false)} />
-        </div>
-      )}
-
-      {/* ================= 3. HERO & SIDEBAR SECTION ================= */}
-      <section id="hero-layout-section" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-5 lg:py-6">
-        <div className="flex flex-col lg:flex-row gap-5">
-          {/* Left Category Sidebar (Desktop Only) */}
-          <aside
-            id="desktop-category-sidebar"
-            className="hidden lg:block w-58 shrink-0 bg-white border border-[#EEF3ED] rounded-2xl p-3 h-fit shadow-xs select-none"
-          >
+      {/* ================= MAIN CONTENT BODY ================= */}
+      <main className="max-w-[1400px] mx-auto px-4 lg:px-8 py-5 space-y-6 flex-1 w-full">
+        {/* ================= HERO SECTION & CATEGORY SIDEBAR (Single Row) ================= */}
+        <section className="flex flex-col lg:flex-row gap-5 items-stretch">
+          {/* LEFT: Category Sidebar */}
+          <aside className="hidden lg:block w-56 shrink-0 rounded-2xl p-2.5 border border-[#E2EFE0] bg-[#F4FAF4] shadow-xs self-stretch flex flex-col justify-between">
             <div className="space-y-0.5">
               {CATEGORIES.map((c) => {
-                const isActive = selectedCategory === c.id;
+                const isSelected = selectedCategory === c.name;
                 return (
-                  <div
-                    key={c.id}
-                    onClick={() => setSelectedCategory(isActive ? "all" : c.id)}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-medium cursor-pointer transition-all ${
-                      isActive
-                        ? "bg-[#EAF6EA] text-[#1E652B] font-bold shadow-2xs"
-                        : "text-[#2A362E] hover:bg-[#F5FAF4] hover:text-[#1E652B]"
+                  <button
+                    key={c.name}
+                    onClick={() => {
+                      setSelectedCategory(c.name);
+                      showToast(`Filtered by ${c.name}`);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left ${
+                      isSelected
+                        ? "bg-[#E2F0E0] text-[#135029] shadow-2xs"
+                        : "text-slate-700 hover:bg-white hover:text-[#135029]"
                     }`}
                   >
-                    <c.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#1E652B]" : "text-[#3D8C47]"}`} />
-                    <span className="truncate">{c.name}</span>
-                  </div>
+                    <c.icon
+                      className={`w-4 h-4 shrink-0 ${
+                        isSelected ? "text-[#135029]" : "text-[#2E7D32]"
+                      }`}
+                    />
+                    <span>{c.name}</span>
+                  </button>
                 );
               })}
             </div>
 
             {/* View All Categories Link */}
-            <div
-              onClick={() => setSelectedCategory("all")}
-              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer text-xs font-bold mt-2 text-[#1E652B] bg-[#EAF6EA] hover:bg-[#DFEEDF] transition-colors"
+            <button
+              onClick={() => showToast("Viewing full catalog")}
+              className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-[#135029] hover:bg-white transition mt-2 pt-2 border-t border-[#E2EFE0]"
             >
-              <Grid3x3 className="w-4 h-4" />
+              <Grid3x3 className="w-4 h-4 text-[#2E7D32]" />
               <span>View All Categories</span>
-            </div>
+            </button>
           </aside>
 
-          {/* Hero Banner Card */}
+          {/* RIGHT: Hero Banner (Clean, solid, perfectly unified mint canvas) */}
           <div
-            id="hero-banner-card"
-            className="flex-1 rounded-3xl overflow-hidden relative flex flex-col lg:flex-row items-center border border-[#E2EFE2] shadow-sm"
-            style={{
-              background: "linear-gradient(115deg, #EEF8ED 0%, #F5FAF4 45%, #FFFFFF 85%)",
-            }}
+            className="flex-1 rounded-2xl overflow-hidden relative border border-[#DCEAD9] p-6 sm:p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between shadow-xs bg-[#EAF5E9]"
           >
-            {/* Left Content Area */}
-            <div className="p-6 sm:p-8 md:p-10 lg:p-12 flex-1 relative z-10">
-              <Reveal>
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.2 rounded-full mb-4 bg-[#DCEFDC] text-[#1A5223]">
-                  <Leaf className="w-3.5 h-3.5 text-[#248337]" />
-                  <span>100% FARM FRESH</span>
-                </div>
-              </Reveal>
+            {/* Left text column */}
+            <div className="relative z-10 flex-1 max-w-xl text-left">
+              {/* 100% FARM FRESH Pill */}
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-[#CDE5CC] text-[11px] font-bold text-[#1E5F26] mb-4 shadow-2xs">
+                <Leaf className="w-3.5 h-3.5 text-[#228B22]" />
+                <span>100% FARM FRESH</span>
+              </div>
 
-              <Reveal delay={100}>
-                <h1
-                  className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.15] tracking-tight text-[#1A241D]"
-                  style={fontDisplay}
+              {/* Main Heading matching Figma */}
+              <h1
+                className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold leading-[1.12] text-[#111827]"
+                style={fontHead}
+              >
+                Fresh Vegetables &amp; Fruits
+                <br />
+                <span className="text-[#228B22]">Delivered To Your Home</span>
+              </h1>
+
+              {/* Subtext */}
+              <p className="mt-3 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+                Handpicked &nbsp;•&nbsp; Hygienically Packed &nbsp;•&nbsp; On-time Delivery
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-3 mt-6">
+                <button
+                  id="hero-shop-now-btn"
+                  onClick={() => {
+                    const el = document.getElementById("best-sellers-heading");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="flex items-center gap-2 px-6 py-3 rounded-lg text-white text-xs sm:text-sm font-bold tracking-wide transition hover:brightness-110 active:scale-95 shadow-xs"
+                  style={{ backgroundColor: BRAND.forestGreen }}
                 >
-                  Fresh Vegetables &amp; Fruits<br />
-                  <span className="text-[#248337]">Delivered To Your Home</span>
-                </h1>
-              </Reveal>
+                  <span>Shop Now</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
 
-              <Reveal delay={180}>
-                <p className="mt-3.5 text-xs sm:text-sm font-medium text-[#59685E] flex flex-wrap items-center gap-2">
-                  <span>Handpicked</span>
-                  <span className="text-[#BAC7BC]">•</span>
-                  <span>Hygienically Packed</span>
-                  <span className="text-[#BAC7BC]">•</span>
-                  <span>On-time Delivery</span>
-                </p>
-              </Reveal>
+                <button
+                  id="hero-explore-offers-btn"
+                  onClick={() => showToast("50% OFF Flash Sale active below!")}
+                  className="px-5 py-3 rounded-lg text-xs sm:text-sm font-bold text-slate-800 bg-white border border-[#D2E4D0] hover:bg-[#F4FAF4] transition active:scale-95 shadow-2xs"
+                >
+                  Explore Offers
+                </button>
+              </div>
 
-              <Reveal delay={260}>
-                <div className="flex flex-wrap items-center gap-3.5 mt-6">
-                  <button
-                    id="hero-shop-now-btn"
-                    onClick={() => {
-                      document.getElementById("best-sellers-heading")?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-bold shadow-md hover:brightness-95 transition-all cursor-pointer"
-                    style={{ backgroundColor: BRAND.green800 }}
-                  >
-                    <span>Shop Now</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+              {/* Delivery time note */}
+              <div className="flex items-center gap-2 mt-5 text-xs text-slate-600 font-medium">
+                <Clock className="w-3.5 h-3.5 text-[#228B22]" />
+                <span>Delivery in 30–45 mins</span>
+              </div>
 
-                  <button
-                    id="hero-explore-offers-btn"
-                    onClick={() => setIsSpinModalOpen(true)}
-                    className="px-6 py-3 rounded-xl text-sm font-bold border border-[#C5DAC5] bg-white text-[#1A241D] hover:bg-[#F5FAF4] transition-all cursor-pointer shadow-2xs"
-                  >
-                    Explore Offers
-                  </button>
-                </div>
-              </Reveal>
-
-              <Reveal delay={340}>
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#59685E] mt-5">
-                  <Clock className="w-3.5 h-3.5 text-[#248337]" />
-                  <span>Delivery in 30–45 mins</span>
-                </div>
-              </Reveal>
-
-              {/* Carousel Pagination dots */}
-              <div className="flex items-center gap-1.5 mt-8">
-                <span className="w-6 h-1.5 rounded-full bg-[#248337]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C7D9C7]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C7D9C7]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C7D9C7]" />
+              {/* Carousel Indicators from Figma (5 dots) */}
+              <div className="flex items-center gap-1.5 mt-6">
+                <span className="w-5 h-1.5 rounded-full bg-[#135029]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C2DEC1]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C2DEC1]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C2DEC1]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C2DEC1]" />
               </div>
             </div>
 
-            {/* Right Rich Harvest Basket Photography Visual */}
-            <div className="relative w-full lg:w-[460px] h-72 sm:h-80 md:h-96 lg:h-[400px] shrink-0 flex items-center justify-center p-4">
-              {/* Soft circular aura background */}
-              <div className="absolute inset-4 rounded-full bg-[#DCEFDC]/50 filter blur-xl -z-0" />
-
-              {/* Real Harvest Basket Image */}
+            {/* Right basket image with Freshness Guarantee Seal */}
+            <div className="relative z-10 w-full lg:w-[460px] h-64 sm:h-72 lg:h-84 shrink-0 flex items-center justify-center mt-6 lg:mt-0">
+              {/* Basket Image (transparent background seamlessly reveals the #EAF5E9 container) */}
               <img
-                src={heroBasketImg}
-                alt="Fresh farm produce harvest basket"
+                src={heroBasket}
+                alt="Fresh Vegetables Basket"
+                className="w-full h-full object-contain select-none"
                 referrerPolicy="no-referrer"
-                className="anim-float-basket relative z-10 w-full h-full object-contain max-h-[360px] drop-shadow-xl select-none pointer-events-none"
               />
 
-              {/* Circular 'Freshness GUARANTEE' Seal */}
-              <div
-                id="freshness-guarantee-badge"
-                className="absolute bottom-4 right-4 sm:bottom-6 sm:right-8 z-20 w-22 h-22 rounded-full bg-white border-2 border-[#248337] flex flex-col items-center justify-center text-center shadow-lg p-1.5 select-none"
-              >
-                <div className="w-6 h-6 rounded-full bg-[#EAF6EA] flex items-center justify-center mb-0.5">
-                  <Leaf className="w-3.5 h-3.5 text-[#248337]" />
+              {/* Freshness GUARANTEE circular seal badge from Figma */}
+              <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white border-2 border-[#135029] p-1 shadow-lg flex flex-col items-center justify-center text-center select-none animate-pulse-slow">
+                <div className="flex items-center justify-center text-[#228B22]">
+                  <Leaf className="w-4 h-4 fill-[#228B22]" />
                 </div>
-                <span className="text-[9px] font-black leading-[1.1] text-[#1E652B] tracking-tighter">
-                  Freshness<br />GUARANTEE
-                </span>
+                <div className="text-[8px] sm:text-[9px] font-bold leading-tight text-[#135029] uppercase mt-0.5">
+                  Freshness
+                  <br />
+                  <strong className="font-extrabold text-[9px] sm:text-[10px]">GUARANTEE</strong>
+                </div>
+                {/* Scalloped decorative ribbon bottom */}
+                <div className="absolute -bottom-1.5 w-6 h-2 bg-[#E03838] rounded-sm flex items-center justify-center">
+                  <span className="text-[6px] text-white font-bold">100%</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ================= 4. VALUE PROPOSITION FEATURES STRIP ================= */}
-      <section id="features-value-strip" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-3">
-        <Reveal>
-          <div className="bg-white border border-[#EEF3ED] rounded-2xl px-6 py-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 shadow-2xs">
+        {/* ================= 6 FEATURE VALUE PROPOSITIONS (Figma Row) ================= */}
+        <section className="bg-white rounded-2xl border border-[#EEF4ED] px-4 sm:px-8 py-5 shadow-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 divide-y sm:divide-y-0 lg:divide-x divide-slate-100">
             {FEATURES.map((f, i) => (
-              <div key={i} className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 bg-[#EAF6EA]">
-                  <f.icon className="w-5 h-5 text-[#248337]" />
+              <div
+                key={f.title}
+                className={`flex items-center gap-3 ${i > 0 ? "lg:pl-5 pt-3 sm:pt-0" : ""}`}
+              >
+                <div className="w-9 h-9 rounded-full bg-[#EAF6EA] flex items-center justify-center shrink-0 text-[#135029]">
+                  <f.icon className="w-4 h-4 text-[#228B22]" />
                 </div>
-                <div className="leading-tight">
-                  <div className="text-[13px] font-bold text-[#1A241D]">{f.title}</div>
-                  <div className="text-[11px] text-[#59685E] mt-0.5">{f.sub}</div>
+                <div className="leading-tight text-left min-w-0">
+                  <div className="text-xs font-bold text-slate-900 truncate">{f.title}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{f.sub}</div>
                 </div>
               </div>
             ))}
           </div>
-        </Reveal>
-      </section>
+        </section>
 
-      {/* ================= 5. FLASH SALE + BEST SELLING PRODUCTS + MEMBERSHIP ================= */}
-      <section id="products-sales-row" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-6">
-        <div className="flex flex-col xl:flex-row gap-5 items-stretch">
-          {/* Card 1: FLASH SALE ⚡ */}
-          <Reveal className="w-full xl:w-72 shrink-0">
-            <div
-              id="flash-sale-banner-card"
-              className="rounded-3xl p-6 h-full flex flex-col border border-[#F3E5D4] relative overflow-hidden shadow-xs"
-              style={{ backgroundColor: BRAND.creamSale }}
-            >
-              {/* Flash badge & % seal */}
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold px-3 py-1 rounded-full bg-[#FCEAE3] text-[#E23B3B]">
-                  FLASH SALE <Zap className="w-3 h-3 fill-current" />
+        {/* ================= 3-COLUMN SECTION (Flash Sale, Best Sellers in 1 Line of 5, Membership) ================= */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          {/* Column 1: FLASH SALE (3 cols) */}
+          <div
+            className="lg:col-span-3 rounded-2xl p-5 border border-[#F2E8D5] flex flex-col justify-between shadow-xs relative overflow-hidden"
+            style={{ backgroundColor: BRAND.creamSale }}
+          >
+            {/* Header + Red Badge */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-extrabold text-[#E03838] flex items-center gap-1">
+                  FLASH SALE ⚡
                 </span>
-                <span className="w-7 h-7 rounded-full bg-[#F57C00] text-white flex items-center justify-center text-xs font-black">
+                <span className="w-6 h-6 rounded-full bg-[#E03838] text-white text-[10px] font-extrabold flex items-center justify-center shadow-xs">
                   %
                 </span>
               </div>
 
-              <h3 className="text-2xl font-black mt-3 text-[#1A241D]" style={fontDisplay}>
-                Up to <span className="text-[#248337]">50% OFF</span>
+              <h3 className="text-2xl font-extrabold text-slate-900" style={fontHead}>
+                Up to <span className="text-[#228B22]">50% OFF</span>
               </h3>
-              <p className="text-xs font-medium text-[#59685E] mt-0.5">On Selected Products</p>
+              <p className="text-xs text-slate-500 mt-0.5">On Selected Products</p>
 
-              {/* Real Countdown Timer */}
-              <div className="grid grid-cols-3 gap-2 mt-4">
-                {[
-                  ["Hours", h],
-                  ["Mins", m],
-                  ["Secs", s],
-                ].map(([label, val]) => (
-                  <div
-                    key={label}
-                    className="text-center rounded-xl py-2 text-white shadow-xs"
-                    style={{ backgroundColor: BRAND.green800 }}
-                  >
-                    <div className="text-base font-black leading-none">{val}</div>
-                    <div className="text-[8px] uppercase tracking-wider mt-1 opacity-85 font-semibold">{label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                id="flash-sale-shop-now-btn"
-                onClick={() => alert("Flash sale activated! 50% discount automatically applied in cart.")}
-                className="mt-5 px-5 py-2.5 rounded-xl text-white text-xs font-bold w-fit shadow-xs hover:brightness-95 transition cursor-pointer"
-                style={{ backgroundColor: BRAND.green800 }}
-              >
-                Shop Now
-              </button>
-
-              {/* Flash Produce Realistic Photo */}
-              <div className="mt-auto pt-4 flex justify-center">
-                <img
-                  src={flashProduceImg}
-                  alt="Fresh Flash Sale Vegetables"
-                  referrerPolicy="no-referrer"
-                  className="w-full max-h-36 object-contain rounded-xl drop-shadow-sm select-none"
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Center Column: BEST SELLING PRODUCTS (Horizontal Grid) */}
-          <div className="flex-1 bg-white border border-[#EEF3ED] rounded-3xl p-5 lg:p-6 shadow-xs flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-4">
-              <h2 id="best-sellers-heading" className="text-lg sm:text-xl font-bold text-[#1A241D]" style={fontDisplay}>
-                Best Selling Products
-              </h2>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setSelectedCategory("all")}
-                  className="flex items-center gap-1 text-xs font-bold text-[#248337] hover:underline cursor-pointer"
-                >
-                  <span>View All</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+              {/* Countdown Boxes */}
+              <div className="grid grid-cols-3 gap-2 mt-4 text-center">
+                <div className="bg-[#EAF6EA] border border-[#D5EAD3] rounded-lg py-1.5 text-[#135029]">
+                  <div className="text-sm font-extrabold">{h}</div>
+                  <div className="text-[9px] uppercase font-medium text-slate-500">Hours</div>
+                </div>
+                <div className="bg-[#EAF6EA] border border-[#D5EAD3] rounded-lg py-1.5 text-[#135029]">
+                  <div className="text-sm font-extrabold">{m}</div>
+                  <div className="text-[9px] uppercase font-medium text-slate-500">Mins</div>
+                </div>
+                <div className="bg-[#EAF6EA] border border-[#D5EAD3] rounded-lg py-1.5 text-[#135029]">
+                  <div className="text-sm font-extrabold">{s}</div>
+                  <div className="text-[9px] uppercase font-medium text-slate-500">Secs</div>
+                </div>
               </div>
             </div>
 
-            {/* Product Cards Row */}
-            <div
-              id="best-sellers-product-grid"
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 flex-1"
+            {/* Veggies Graphic */}
+            <div className="my-3 flex justify-center">
+              <img
+                src={flashSaleBanner}
+                alt="Flash Sale items"
+                className="h-24 w-auto object-contain mix-blend-multiply rounded-lg"
+              />
+            </div>
+
+            {/* Shop Now button */}
+            <button
+              onClick={() => showToast("Loading Flash Sale deals...")}
+              className="w-full py-2.5 rounded-lg text-white text-xs font-bold transition hover:brightness-110 shadow-xs"
+              style={{ backgroundColor: BRAND.forestGreen }}
             >
-              {filteredProducts.map((p, i) => {
-                const qty = cart[p.id] || 0;
+              Shop Now
+            </button>
+          </div>
+
+          {/* Column 2: Best Selling Products (6 cols - EXACT previous rich card style in ONE single row of 5 products) */}
+          <div className="lg:col-span-6 bg-white rounded-2xl border border-[#EEF4ED] p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+            {/* Heading row */}
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h3 id="best-sellers-heading" className="text-base sm:text-lg font-bold text-slate-900" style={fontHead}>
+                  Best Selling Products
+                </h3>
+                <p className="text-[11px] text-slate-400">Most popular organic arrivals today</p>
+              </div>
+              <button
+                onClick={() => showToast("Showing all best-sellers")}
+                className="text-xs font-bold text-[#228B22] flex items-center gap-1 hover:underline shrink-0"
+              >
+                <span>View All</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* 1 Single Line of 5 Products with rich interactive card styling */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+              {PRODUCTS.map((p) => {
+                const inCartQty = cart[p.id] || 0;
+                const isFav = favorites[p.id] || false;
                 return (
-                  <Reveal key={p.id} delay={i * 50}>
-                    <div
-                      id={`product-card-${p.id}`}
-                      className="border border-[#EEF3ED] hover:border-[#C8E2C8] rounded-2xl p-3 flex flex-col bg-white hover:shadow-md transition-all h-full group"
-                    >
-                      {/* Product Image */}
-                      <div className="h-28 sm:h-32 w-full flex items-center justify-center p-1 bg-[#F9FCF9] rounded-xl mb-2 overflow-hidden">
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          referrerPolicy="no-referrer"
-                          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 select-none"
-                        />
-                      </div>
-
-                      {/* Product Info */}
-                      <div className="text-[13px] font-bold text-[#1A241D] leading-tight">{p.name}</div>
-                      <div className="text-[11px] text-[#78887D] mt-0.5">{p.weight}</div>
-
-                      {/* Pricing & Add Button */}
-                      <div className="flex items-center justify-between mt-auto pt-2.5">
-                        <div className="leading-tight">
-                          <span className="text-[13px] font-black text-[#1A241D]">₹{p.price.toFixed(2)}</span>
-                          <span className="text-[10px] text-[#A6B5A9] line-through ml-1.5">
-                            ₹{p.mrp.toFixed(2)}
-                          </span>
-                        </div>
-
-                        {/* Cart Controls */}
-                        {qty > 0 ? (
-                          <div
-                            className="flex items-center rounded-lg overflow-hidden text-white shadow-xs"
-                            style={{ backgroundColor: BRAND.green800 }}
-                          >
-                            <button
-                              onClick={() => removeFromCart(p.id)}
-                              className="w-6 h-6 flex items-center justify-center hover:bg-black/15 cursor-pointer"
-                              aria-label={`Decrease ${p.name}`}
-                            >
-                              <Minus className="w-3 h-3" />
-                            </button>
-                            <span className="text-xs font-bold w-4 text-center">{qty}</span>
-                            <button
-                              onClick={() => addToCart(p.id)}
-                              className="w-6 h-6 flex items-center justify-center hover:bg-black/15 cursor-pointer"
-                              aria-label={`Increase ${p.name}`}
-                            >
-                              <Plus className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ) : (
-                          <button
-                            id={`add-btn-${p.id}`}
-                            onClick={() => addToCart(p.id)}
-                            className="w-7 h-7 rounded-lg flex items-center justify-center text-white shadow-xs hover:brightness-95 transition cursor-pointer"
-                            style={{ backgroundColor: BRAND.green800 }}
-                            aria-label={`Add ${p.name} to cart`}
-                          >
-                            <Plus className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
+                  <div
+                    key={p.id}
+                    className="rounded-xl border border-slate-100 p-2 sm:p-2.5 flex flex-col justify-between bg-white hover:border-[#C8E4C5] hover:shadow-md transition-all duration-200 group relative"
+                  >
+                    {/* Top Badges Row: Discount & Heart */}
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[#EAF6EA] text-[#1E5F26]">
+                        {p.discount}
+                      </span>
+                      <button
+                        onClick={() => toggleFavorite(p.id)}
+                        className="text-slate-300 hover:text-red-500 transition p-0.5"
+                        aria-label="Favorite"
+                      >
+                        <Heart className={`w-3.5 h-3.5 ${isFav ? "fill-red-500 text-red-500" : ""}`} />
+                      </button>
                     </div>
-                  </Reveal>
+
+                    {/* Product Image Container */}
+                    <div className="h-20 sm:h-22 w-full flex items-center justify-center overflow-hidden rounded-lg bg-[#F8FAF8] mb-1.5 relative group-hover:bg-[#F2F8F1] transition">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        className="h-full w-full object-cover group-hover:scale-108 transition duration-300 rounded-md"
+                      />
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex items-center gap-1 text-[10px] text-amber-500 mb-0.5">
+                      <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      <span className="font-bold text-slate-700">{p.rating}</span>
+                      <span className="text-slate-400 text-[9px]">({p.reviews})</span>
+                    </div>
+
+                    {/* Product Name & Weight */}
+                    <div className="text-left mb-2">
+                      <div className="text-xs font-bold text-slate-900 truncate group-hover:text-[#135029] transition">
+                        {p.name}
+                      </div>
+                      <div className="text-[10px] text-slate-400">{p.weight}</div>
+                    </div>
+
+                    {/* Price & Interactive Cart Button */}
+                    <div className="pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                      <div className="leading-tight text-left">
+                        <div className="text-xs font-extrabold text-slate-900">₹{p.price}</div>
+                        <div className="text-[9px] text-slate-400 line-through">₹{p.mrp}</div>
+                      </div>
+
+                      {inCartQty > 0 ? (
+                        <div className="flex items-center gap-1 bg-[#135029] text-white rounded-lg px-1 py-0.5 shadow-2xs">
+                          <button
+                            onClick={() => removeFromCart(p.id)}
+                            className="w-4 h-4 flex items-center justify-center hover:opacity-80 active:scale-90"
+                            aria-label="Decrease"
+                          >
+                            <Minus className="w-2.5 h-2.5" />
+                          </button>
+                          <span className="text-[11px] font-bold w-3 text-center">{inCartQty}</span>
+                          <button
+                            onClick={() => addToCart(p.id)}
+                            className="w-4 h-4 flex items-center justify-center hover:opacity-80 active:scale-90"
+                            aria-label="Increase"
+                          >
+                            <Plus className="w-2.5 h-2.5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => addToCart(p.id)}
+                          className="px-2 py-1 rounded-md bg-[#135029] text-white text-[10px] font-bold hover:bg-[#1E7D32] transition active:scale-95 flex items-center gap-0.5 shadow-2xs"
+                          aria-label={`Add ${p.name}`}
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add</span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Card 3: VEGGO PLUS MEMBERSHIP */}
-          <Reveal className="w-full xl:w-72 shrink-0">
-            <div
-              id="membership-promo-card"
-              className="rounded-3xl p-6 h-full flex flex-col border border-[#D5EAD5] relative overflow-hidden shadow-xs"
-              style={{ backgroundColor: BRAND.green100 }}
-            >
-              <h3 className="text-xl font-black text-[#133E19]" style={fontDisplay}>
-                VegGo Plus<br />Membership
+          {/* Column 3: VegGo Plus Membership (3 cols) */}
+          <div
+            className="lg:col-span-3 rounded-2xl p-5 border border-[#D8EBD7] flex flex-col justify-between shadow-xs"
+            style={{ backgroundColor: BRAND.lightMintBg }}
+          >
+            <div>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#113B1E]" style={fontHead}>
+                VegGo Plus
+                <br />
+                Membership
               </h3>
 
-              <ul className="mt-4 space-y-2 text-xs font-semibold text-[#1E652B]">
+              <ul className="mt-3 space-y-1.5 text-xs text-[#1E5F26] font-medium text-left">
                 {["Free Delivery", "Exclusive Offers", "Extra Discounts", "Priority Support"].map((perk) => (
                   <li key={perk} className="flex items-center gap-2">
-                    <span className="w-4 h-4 rounded-full bg-[#248337] text-white flex items-center justify-center text-[9px] font-bold">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#135029] text-white text-[8px] font-bold flex items-center justify-center">
                       ✓
                     </span>
                     <span>{perk}</span>
                   </li>
                 ))}
               </ul>
-
-              <button
-                id="join-membership-action-btn"
-                onClick={() => alert("🎉 Welcome Shiva! 30-Day VegGo Plus Free Trial Activated!")}
-                className="mt-5 px-5 py-2.5 rounded-xl text-white text-xs font-bold w-fit shadow-xs hover:brightness-95 transition cursor-pointer"
-                style={{ backgroundColor: BRAND.green800 }}
-              >
-                Join Now
-              </button>
-
-              {/* Delivery Bag Authentic Photo Visual */}
-              <div className="mt-auto pt-4 flex justify-center">
-                <img
-                  src={deliveryBagImg}
-                  alt="VegGo Plus Delivery Kit"
-                  referrerPolicy="no-referrer"
-                  className="w-full max-h-36 object-contain rounded-xl drop-shadow-sm select-none"
-                />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= 6. BOTTOM PROMOTIONAL BAR & FLOATING AI ================= */}
-      <section id="bottom-promos-section" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pb-12">
-        <Reveal>
-          <div
-            id="bottom-promotions-ribbon"
-            className="rounded-3xl px-6 lg:px-10 py-7 flex flex-col md:flex-row items-center gap-6 relative shadow-md"
-            style={{ backgroundColor: BRAND.green900 }}
-          >
-            {/* 4 Feature Promo Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 flex-1 w-full">
-              {PROMOS.map((p) => (
-                <div key={p.id} className="flex items-start gap-3.5 text-white">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-white/15">
-                    <p.icon className="w-5 h-5 text-[#A5D6A7]" />
-                  </div>
-                  <div>
-                    <div className="text-[13px] font-bold">{p.title}</div>
-                    <div className="text-[11px] text-[#C4DDC4] mb-2.5 max-w-[160px] leading-snug">{p.sub}</div>
-                    <button
-                      onClick={() => {
-                        if (p.action === "spin") setIsSpinModalOpen(true);
-                        else if (p.action === "reorder") alert("Loading your previous organic order items...");
-                        else if (p.action === "recommendations") setIsAiModalOpen(true);
-                        else alert("Today's Special: 1kg Fresh Farm Carrots @ ₹18.00");
-                      }}
-                      className="text-[11px] font-bold px-3.5 py-1.5 rounded-lg bg-white text-[#133E19] hover:bg-[#EAF6EA] transition-colors cursor-pointer shadow-2xs"
-                    >
-                      {p.cta}
-                    </button>
-                  </div>
-                </div>
-              ))}
             </div>
 
-            {/* Floating Pulse AI Assistant Badge on Ribbon */}
-            <div
-              id="ai-floating-ribbon-badge"
-              onClick={() => setIsAiModalOpen(true)}
-              className="anim-pulse-ai w-18 h-18 rounded-full bg-white flex flex-col items-center justify-center text-center shrink-0 shadow-xl cursor-pointer hover:scale-105 transition-transform select-none"
+            {/* Cooler bag image with fresh produce */}
+            <div className="my-2 flex justify-center">
+              <img
+                src={coolerBag}
+                alt="VegGo Cooler Bag"
+                className="h-24 w-auto object-contain mix-blend-multiply"
+              />
+            </div>
+
+            {/* Join Now Button */}
+            <button
+              onClick={() => showToast("🎉 VegGo Plus 30-day Free Trial Activated!")}
+              className="w-full py-2.5 rounded-lg text-white text-xs font-bold transition hover:brightness-110 shadow-xs"
+              style={{ backgroundColor: BRAND.forestGreen }}
             >
-              <Bot className="w-6 h-6 text-[#1E652B]" />
-              <span className="text-[7.5px] font-black leading-tight text-[#133E19] mt-0.5">
-                VegGo<br />AI Assistant
-              </span>
+              Join Now
+            </button>
+          </div>
+        </section>
+
+        {/* ================= BOTTOM PROMO STRIP (Dark Forest Green Banner from Figma) ================= */}
+        <section
+          className="rounded-2xl p-5 sm:p-6 text-white relative shadow-md overflow-hidden"
+          style={{ backgroundColor: BRAND.bannerDark }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+            {/* Promo 1: Spin & Win */}
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                <Gift className="w-5 h-5 text-amber-300" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold">Spin &amp; Win</div>
+                <div className="text-[10px] text-white/70">Win exciting rewards everyday</div>
+                <button
+                  onClick={() => showToast("Spinning wheel... You won ₹50 VegGo cashback!")}
+                  className="px-3 py-1 rounded-md bg-white text-[#135029] text-[10px] font-bold hover:bg-slate-100 transition mt-1"
+                >
+                  Spin Now
+                </button>
+              </div>
+            </div>
+
+            {/* Promo 2: Buy Again */}
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                <Repeat className="w-5 h-5 text-emerald-300" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold">Buy Again</div>
+                <div className="text-[10px] text-white/70">Reorder your favourite items</div>
+                <button
+                  onClick={() => showToast("Reordering last basket (Tomatoes & Apples)")}
+                  className="px-3 py-1 rounded-md bg-white text-[#135029] text-[10px] font-bold hover:bg-slate-100 transition mt-1"
+                >
+                  Buy Again
+                </button>
+              </div>
+            </div>
+
+            {/* Promo 3: Smart Recommendations */}
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                <Star className="w-5 h-5 text-amber-300 fill-amber-300" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold">Smart Recommendations</div>
+                <div className="text-[10px] text-white/70">Handpicked for you based on your choice</div>
+                <button
+                  onClick={() => showToast("Loaded AI recommendations")}
+                  className="px-3 py-1 rounded-md bg-white text-[#135029] text-[10px] font-bold hover:bg-slate-100 transition mt-1"
+                >
+                  Explore
+                </button>
+              </div>
+            </div>
+
+            {/* Promo 4: Today's Offers */}
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                <Percent className="w-5 h-5 text-emerald-200" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold">Today's Offers</div>
+                <div className="text-[10px] text-white/70">Grab the best deals of the day!</div>
+                <button
+                  onClick={() => showToast("50% off deals highlighted")}
+                  className="px-3 py-1 rounded-md bg-white text-[#135029] text-[10px] font-bold hover:bg-slate-100 transition mt-1"
+                >
+                  View Offers
+                </button>
+              </div>
             </div>
           </div>
-        </Reveal>
-      </section>
 
-      {/* ================= 7. FOOTER ================= */}
-      <footer id="veggo-main-footer" className="border-t border-[#EEF3ED] bg-[#F5FAF4] pt-12 pb-8">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            {/* Brand column */}
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-1.5 mb-3">
-                <span className="text-xl font-black text-[#1E652B]" style={fontDisplay}>VegGo</span>
-                <span className="text-[9px] bg-[#EAF6EA] text-[#1E652B] font-bold px-2 py-0.5 rounded-full">FRESH</span>
+          {/* Floating AI Assistant circular widget on bottom right from Figma */}
+          <div
+            onClick={() => setAiModalOpen(true)}
+            className="hidden xl:flex absolute bottom-3 right-4 bg-white text-[#135029] rounded-full px-3 py-2 items-center gap-2 cursor-pointer shadow-lg hover:scale-105 transition border-2 border-emerald-400 select-none"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#135029] flex items-center justify-center text-emerald-200">
+              <Bot className="w-4 h-4" />
+            </div>
+            <div className="leading-tight text-left pr-1">
+              <div className="text-[11px] font-bold text-[#113B1E]">VegGo</div>
+              <div className="text-[9px] text-[#4A7C54] font-medium">AI Assistant</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* ================= COMPREHENSIVE RICH FOOTER ================= */}
+      <footer className="mt-16 bg-white border-t border-[#E8F2E6]">
+        {/* Top Feature Highlights Bar */}
+        <div className="border-b border-slate-100 bg-[#F9FCF9] py-8 px-4 lg:px-8">
+          <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-10 h-10 rounded-full bg-[#EAF6EA] flex items-center justify-center text-[#135029]">
+                <Truck className="w-5 h-5 text-[#228B22]" />
               </div>
-              <p className="text-xs text-[#59685E] leading-relaxed">
-                Farm-fresh vegetables &amp; fruits handpicked every morning and delivered directly to your doorstep in 30–45 minutes.
-              </p>
-              <div className="flex items-center gap-3 mt-4 text-[#1E652B]">
-                <a href="#instagram" className="w-7 h-7 rounded-full bg-white border border-[#DCE7DA] flex items-center justify-center hover:bg-[#EAF6EA] transition" aria-label="Instagram">
-                  <Instagram className="w-3.5 h-3.5" />
-                </a>
-                <a href="#facebook" className="w-7 h-7 rounded-full bg-white border border-[#DCE7DA] flex items-center justify-center hover:bg-[#EAF6EA] transition" aria-label="Facebook">
-                  <Facebook className="w-3.5 h-3.5" />
-                </a>
-                <a href="#twitter" className="w-7 h-7 rounded-full bg-white border border-[#DCE7DA] flex items-center justify-center hover:bg-[#EAF6EA] transition" aria-label="Twitter">
-                  <Twitter className="w-3.5 h-3.5" />
-                </a>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">Express Delivery</h4>
+                <p className="text-[11px] text-slate-500">Fresh at your door in 30-45 mins</p>
               </div>
             </div>
 
-            {/* Links Columns */}
-            <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#1A241D] mb-3.5">Shop</div>
-              <ul className="space-y-2 text-xs text-[#59685E]">
-                {["Vegetables", "Fresh Fruits", "Leafy Greens", "Dairy & Milk", "Seasoning Herbs"].map((item) => (
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-10 h-10 rounded-full bg-[#EAF6EA] flex items-center justify-center text-[#135029]">
+                <ShieldCheck className="w-5 h-5 text-[#228B22]" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">100% Organic &amp; Pure</h4>
+                <p className="text-[11px] text-slate-500">Zero chemical fertilizers used</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-10 h-10 rounded-full bg-[#EAF6EA] flex items-center justify-center text-[#135029]">
+                <RotateCcw className="w-5 h-5 text-[#228B22]" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">Instant Hassle-Free Returns</h4>
+                <p className="text-[11px] text-slate-500">No questions asked refund</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-10 h-10 rounded-full bg-[#EAF6EA] flex items-center justify-center text-[#135029]">
+                <Award className="w-5 h-5 text-[#228B22]" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">Direct From Local Farmers</h4>
+                <p className="text-[11px] text-slate-500">Fair trade pricing guaranteed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Footer Links Columns */}
+        <div className="max-w-[1400px] mx-auto py-12 px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-left">
+            {/* Col 1: Brand & Contact Info */}
+            <div className="lg:col-span-2 space-y-4 pr-0 lg:pr-6">
+              <img src={logoImg} alt="VegGo FRESH" className="h-10 w-auto object-contain" />
+              <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
+                VegGo Fresh brings you farm-harvested vegetables, seasonal fruits, organic greens, and daily dairy essentials harvested at dawn and delivered right to your kitchen.
+              </p>
+              <div className="space-y-2 pt-2 text-xs text-slate-600">
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-[#228B22]" />
+                  <span>Helpline: <strong>+91 1800-425-8344</strong> (Toll Free)</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#228B22]" />
+                  <span>Email: <strong>support@veggofresh.com</strong></span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#228B22]" />
+                  <span>Hub: Road No. 12, Kukatpally, Hyderabad, TS 500072</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Col 2: Popular Categories */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900" style={fontHead}>
+                Popular Categories
+              </h4>
+              <ul className="space-y-2 text-xs text-slate-600">
+                {["Fresh Vegetables", "Exotic & Organic Fruits", "Hydroponic Greens", "Dairy & Farm Eggs", "Millet Grains & Pulses", "Aromatic Herbs & Spices"].map((item) => (
                   <li key={item}>
-                    <button onClick={() => setSelectedCategory("all")} className="hover:text-[#1E652B] hover:underline cursor-pointer">
+                    <button onClick={() => showToast(`Filtering ${item}`)} className="hover:text-[#135029] transition">
                       {item}
                     </button>
                   </li>
@@ -1207,276 +960,129 @@ export default function App() {
               </ul>
             </div>
 
-            <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#1A241D] mb-3.5">Company</div>
-              <ul className="space-y-2 text-xs text-[#59685E]">
-                {["About VegGo", "Become a Seller", "Farmer Partners", "Careers", "News & Blog"].map((item) => (
+            {/* Col 3: Company & Information */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900" style={fontHead}>
+                Company
+              </h4>
+              <ul className="space-y-2 text-xs text-slate-600">
+                {["About VegGo", "Partner With Us (Farmers)", "Become a Delivery Partner", "VegGo Plus Membership", "Quality Assurance Lab", "Careers & Culture"].map((item) => (
                   <li key={item}>
-                    <a href={`#${item.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1E652B] hover:underline">
+                    <button onClick={() => showToast(item)} className="hover:text-[#135029] transition">
                       {item}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#1A241D] mb-3.5">Support</div>
-              <ul className="space-y-2 text-xs text-[#59685E]">
-                {["Help Center", "Track Order", "Refund Policy", "Terms & Conditions", "Contact Us"].map((item) => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1E652B] hover:underline">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            {/* Col 4: App Download & Payment Partners */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900" style={fontHead}>
+                Download Our App
+              </h4>
+              <p className="text-[11px] text-slate-500 leading-normal">
+                Enjoy exclusive app-only coupons and live GPS order tracking.
+              </p>
+              <div className="space-y-2 pt-1">
+                <button
+                  onClick={() => showToast("Opening App Store link")}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl bg-slate-900 text-white text-xs hover:bg-slate-800 transition"
+                >
+                  <Smartphone className="w-4 h-4 text-emerald-400" />
+                  <div className="text-left">
+                    <div className="text-[8px] text-slate-400 leading-tight">GET IT ON</div>
+                    <div className="text-[11px] font-bold leading-tight">Google Play &amp; iOS</div>
+                  </div>
+                </button>
+              </div>
+
+              <div className="pt-3">
+                <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                  100% Secure Payments
+                </h5>
+                <div className="flex items-center gap-2 text-slate-400 text-xs">
+                  <CreditCard className="w-4 h-4 text-slate-600" />
+                  <span className="text-[10px] text-slate-500 font-medium">UPI • Cards • NetBanking • COD</span>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="pt-6 border-t border-[#DCE7DA] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#78887D]">
-            <div>© {new Date().getFullYear()} VegGo Fresh Technologies Pvt. Ltd. All rights reserved.</div>
-            <div className="flex items-center gap-4">
-              <span>Privacy Policy</span>
+        {/* Bottom Copyright & Legal Links */}
+        <div className="border-t border-slate-100 py-6 px-4 lg:px-8 bg-slate-50 text-[11px] text-slate-500">
+          <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              © {new Date().getFullYear()} <strong>VegGo Fresh Technologies Pvt. Ltd.</strong> All rights reserved.
+            </div>
+            <div className="flex items-center gap-5">
+              <button onClick={() => showToast("Privacy Policy")} className="hover:underline">
+                Privacy Policy
+              </button>
               <span>•</span>
-              <span>Terms of Service</span>
+              <button onClick={() => showToast("Terms of Use")} className="hover:underline">
+                Terms of Use
+              </button>
               <span>•</span>
-              <span>Security</span>
+              <button onClick={() => showToast("Security & FSSAI Lic. #10020042000189")} className="hover:underline">
+                FSSAI Certified
+              </button>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* ================= MODAL 1: SPIN & WIN REWARDS ================= */}
-      {isSpinModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative text-center border border-[#D5EAD5]">
-            <button
-              onClick={() => setIsSpinModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 cursor-pointer"
-            >
-              <X className="w-5 h-5 text-gray-500" />
-            </button>
-
-            <div className="w-12 h-12 rounded-full bg-[#EAF6EA] text-[#1E652B] flex items-center justify-center mx-auto mb-3">
-              <Gift className="w-6 h-6" />
-            </div>
-
-            <h3 className="text-2xl font-black text-[#133E19]" style={fontDisplay}>
-              Spin &amp; Win Daily Rewards
-            </h3>
-            <p className="text-xs text-[#59685E] mt-1 mb-5">
-              Spin the lucky harvest wheel to unlock instant cashbacks and free delivery!
-            </p>
-
-            {/* Spin Wheel Visual */}
-            <div className="relative w-52 h-52 mx-auto mb-6 flex items-center justify-center">
-              <div
-                className="w-full h-full rounded-full transition-all ease-out overflow-hidden border-4 border-[#2E7D32] shadow-lg"
-                style={{
-                  transform: `rotate(${spinAngle}deg)`,
-                  transitionDuration: isSpinning ? "3.5s" : "0.2s",
-                }}
-              >
-                <img
-                  src={spinWheelImg}
-                  alt="Lucky Wheel"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Wheel Pointer */}
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-16 border-t-[#E23B3B] z-10 filter drop-shadow-md" />
-            </div>
-
-            {spinReward && (
-              <div className="p-3 bg-[#EAF6EA] border border-[#248337] rounded-xl text-xs font-bold text-[#133E19] mb-4 animate-in zoom-in-95">
-                {spinReward}
-              </div>
-            )}
-
-            <button
-              onClick={handleSpinWheel}
-              disabled={isSpinning}
-              className={`w-full py-3.5 rounded-xl text-white font-bold text-sm shadow-md transition cursor-pointer ${
-                isSpinning ? "opacity-60 cursor-not-allowed bg-gray-400" : "bg-[#1E652B] hover:brightness-95"
-              }`}
-            >
-              {isSpinning ? "Spinning..." : "SPIN NOW"}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* ================= MODAL 2: VEGGO AI ASSISTANT ================= */}
-      {isAiModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-[#D5EAD5] flex flex-col h-[560px] overflow-hidden">
-            {/* Header */}
-            <div className="p-4 bg-[#133E19] text-white flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-[#81C784]" />
-                </div>
-                <div>
-                  <div className="text-sm font-bold">VegGo AI Assistant</div>
-                  <div className="text-[10px] text-[#A5D6A7]">Online • Smart Fresh Guide</div>
-                </div>
-              </div>
-              <button onClick={() => setIsAiModalOpen(false)} className="p-1 rounded-lg hover:bg-white/10 cursor-pointer">
-                <X className="w-5 h-5 text-white" />
-              </button>
-            </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#F9FCF9]">
-              {aiChat.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[82%] p-3 rounded-2xl text-xs leading-relaxed ${
-                      msg.sender === "user"
-                        ? "bg-[#1E652B] text-white rounded-tr-xs"
-                        : "bg-white border border-[#DCE7DA] text-[#1A241D] rounded-tl-xs shadow-2xs"
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Quick Prompt suggestions */}
-            <div className="px-4 py-2 bg-white border-t border-gray-100 flex items-center gap-2 overflow-x-auto text-[11px]">
-              <button
-                onClick={() => setAiInput("What ingredients are needed for Sambar?")}
-                className="px-2.5 py-1 rounded-full bg-[#EAF6EA] text-[#1E652B] hover:bg-[#D5EAD5] shrink-0 cursor-pointer"
-              >
-                🥘 Sambar Veggies
-              </button>
-              <button
-                onClick={() => setAiInput("Suggest a healthy salad basket")}
-                className="px-2.5 py-1 rounded-full bg-[#EAF6EA] text-[#1E652B] hover:bg-[#D5EAD5] shrink-0 cursor-pointer"
-              >
-                🥗 Salad Kit
-              </button>
-              <button
-                onClick={() => setAiInput("What are today's top discount offers?")}
-                className="px-2.5 py-1 rounded-full bg-[#EAF6EA] text-[#1E652B] hover:bg-[#D5EAD5] shrink-0 cursor-pointer"
-              >
-                🏷️ Best Coupons
-              </button>
-            </div>
-
-            {/* Chat Input */}
-            <div className="p-3 bg-white border-t border-gray-200 flex items-center gap-2">
-              <input
-                type="text"
-                value={aiInput}
-                onChange={(e) => setAiInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSendAiMessage()}
-                placeholder="Ask about recipes, calorie count, or ingredients..."
-                className="flex-1 px-3.5 py-2 text-xs border border-gray-300 rounded-xl outline-hidden focus:border-[#1E652B]"
-              />
-              <button
-                onClick={handleSendAiMessage}
-                className="p-2.5 bg-[#1E652B] text-white rounded-xl hover:brightness-95 cursor-pointer"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ================= MODAL 3: LOCATION SELECTOR ================= */}
-      {isLocationModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-[#D5EAD5]">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-base font-bold text-[#133E19]">Select Delivery Location</h4>
-              <button onClick={() => setIsLocationModalOpen(false)} className="p-1 hover:bg-gray-100 rounded-lg">
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="space-y-2">
-              {[
-                "Kukatpally, Hyderabad",
-                "Hitec City, Hyderabad",
-                "Madhapur, Hyderabad",
-                "Gachibowli, Hyderabad",
-                "Jubilee Hills, Hyderabad",
-              ].map((loc) => (
-                <button
-                  key={loc}
-                  onClick={() => {
-                    setActiveLocation(loc);
-                    setIsLocationModalOpen(false);
-                  }}
-                  className={`w-full flex items-center justify-between p-3 rounded-xl text-xs text-left cursor-pointer transition ${
-                    activeLocation === loc ? "bg-[#EAF6EA] text-[#1E652B] font-bold border border-[#248337]" : "hover:bg-gray-50 border border-gray-100"
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#248337]" />
-                    {loc}
-                  </span>
-                  {activeLocation === loc && <Check className="w-4 h-4 text-[#248337]" />}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ================= SLIDE-OVER: INTERACTIVE CART DRAWER ================= */}
-      {isCartDrawerOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end animate-in fade-in">
-          <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col">
-            {/* Drawer Header */}
-            <div className="p-4 bg-[#133E19] text-white flex items-center justify-between">
+      {/* ================= SLIDE-OVER CART DRAWER ================= */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-slide-in">
+            <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-[#F4FAF4]">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-[#81C784]" />
-                <span className="font-bold text-sm">Your Fresh Cart ({cartCount} items)</span>
+                <ShoppingCart className="w-5 h-5 text-[#135029]" />
+                <h3 className="font-bold text-base text-slate-900" style={fontHead}>
+                  My Cart ({cartCount} items)
+                </h3>
               </div>
-              <button onClick={() => setIsCartDrawerOpen(false)} className="p-1 rounded-lg hover:bg-white/10 cursor-pointer">
-                <X className="w-5 h-5 text-white" />
+              <button
+                onClick={() => setCartOpen(false)}
+                className="p-1 rounded-lg hover:bg-slate-200 text-slate-500"
+              >
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Items List */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 divide-y divide-gray-100">
-              {Object.keys(cart).length === 0 ? (
-                <div className="text-center py-16 text-gray-400">
-                  <ShoppingCart className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-                  <p className="text-sm">Your cart is empty.</p>
+            <div className="flex-1 overflow-y-auto p-5 space-y-3">
+              {cartCount === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center text-slate-400 py-12">
+                  <ShoppingCart className="w-12 h-12 mb-3 text-slate-300" />
+                  <p className="text-sm font-semibold text-slate-700">Your basket is empty</p>
+                  <p className="text-xs text-slate-400 mt-1">Add fresh items from our catalog</p>
                 </div>
               ) : (
-                (Object.entries(cart) as [string, number][]).map(([id, qty]) => {
-                  const prod = PRODUCTS.find((p) => p.id === id);
-                  if (!prod) return null;
+                Object.entries(cart).map(([id, qty]) => {
+                  const p = PRODUCTS.find((prod) => prod.id === id);
+                  if (!p) return null;
                   return (
-                    <div key={id} className="pt-3 flex items-center justify-between gap-3">
-                      <img
-                        src={prod.image}
-                        alt={prod.name}
-                        referrerPolicy="no-referrer"
-                        className="w-12 h-12 object-contain bg-gray-50 rounded-lg p-1"
-                      />
-                      <div className="flex-1 leading-tight">
-                        <div className="text-xs font-bold text-[#1A241D]">{prod.name}</div>
-                        <div className="text-[10px] text-[#78887D]">{prod.weight}</div>
-                        <div className="text-xs font-bold text-[#1E652B] mt-1">₹{(prod.price * Number(qty)).toFixed(2)}</div>
+                    <div key={id} className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/50">
+                      <img src={p.img} alt={p.name} className="w-14 h-14 rounded-lg object-cover bg-white" />
+                      <div className="flex-1 min-w-0 text-left">
+                        <div className="text-xs font-bold text-slate-900 truncate">{p.name}</div>
+                        <div className="text-[10px] text-slate-500">{p.weight}</div>
+                        <div className="text-xs font-bold text-[#135029] mt-0.5">₹{p.price.toFixed(2)}</div>
                       </div>
-                      <div className="flex items-center rounded-lg border border-[#DCE7DA] overflow-hidden">
-                        <button onClick={() => removeFromCart(id)} className="px-2 py-1 hover:bg-gray-100 text-xs cursor-pointer">
+                      <div className="flex items-center gap-2 bg-[#135029] rounded-lg p-1 text-white">
+                        <button
+                          onClick={() => removeFromCart(id)}
+                          className="w-5 h-5 flex items-center justify-center hover:opacity-80"
+                        >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="px-2 text-xs font-bold">{qty}</span>
-                        <button onClick={() => addToCart(id)} className="px-2 py-1 hover:bg-gray-100 text-xs cursor-pointer">
+                        <span className="text-xs font-bold w-3 text-center">{qty}</span>
+                        <button
+                          onClick={() => addToCart(id)}
+                          className="w-5 h-5 flex items-center justify-center hover:opacity-80"
+                        >
                           <Plus className="w-3 h-3" />
                         </button>
                       </div>
@@ -1486,34 +1092,107 @@ export default function App() {
               )}
             </div>
 
-            {/* Checkout Footer */}
-            {Object.keys(cart).length > 0 && (
-              <div className="p-4 border-t border-gray-200 bg-[#F9FCF9]">
-                <div className="space-y-1.5 text-xs text-[#59685E] mb-3">
+            {cartCount > 0 && (
+              <div className="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+                <div className="space-y-1 text-xs text-slate-600">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span className="font-semibold text-black">₹{cartTotal.toFixed(2)}</span>
+                    <span className="font-semibold text-slate-900">₹{cartTotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Delivery Fee (30-45 mins)</span>
-                    <span className="text-[#248337] font-semibold">FREE (VegGo Plus)</span>
+                  <div className="flex justify-between text-[#135029] font-medium">
+                    <span>Delivery (30-45 mins)</span>
+                    <span className="uppercase font-bold">Free</span>
                   </div>
-                  <div className="flex justify-between text-sm font-bold text-[#133E19] pt-1 border-t border-gray-200">
+                  <div className="flex justify-between text-slate-900 font-bold text-sm pt-2 border-t border-slate-200">
                     <span>Total Amount</span>
-                    <span>₹{cartTotal.toFixed(2)}</span>
+                    <span className="text-[#135029]">₹{cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => alert(`🎉 Order placed successfully! Delivering to ${activeLocation} in 30 mins.`)}
-                  className="w-full py-3 bg-[#1E652B] text-white font-bold text-xs rounded-xl shadow-md hover:brightness-95 cursor-pointer"
+                  onClick={() => {
+                    showToast("🎉 Order placed! Fast delivery dispatched.");
+                    setCart({});
+                    setCartOpen(false);
+                  }}
+                  className="w-full py-3 rounded-lg text-white font-bold text-xs tracking-wide shadow-md transition hover:brightness-110 flex items-center justify-center gap-2"
+                  style={{ backgroundColor: BRAND.forestGreen }}
                 >
-                  PROCEED TO CHECKOUT (₹{cartTotal.toFixed(2)})
+                  <span>Proceed to Checkout (₹{cartTotal.toFixed(2)})</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             )}
           </div>
-          <div className="flex-1 bg-black/40" onClick={() => setIsCartDrawerOpen(false)} />
+          <div className="flex-1 bg-black/40 backdrop-blur-xs" onClick={() => setCartOpen(false)} />
+        </div>
+      )}
+
+      {/* ================= AI RECIPE MODAL ================= */}
+      {aiModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-[#D5EAD3] overflow-hidden flex flex-col animate-fade-in">
+            <div className="p-4 bg-[#135029] text-white flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Bot className="w-5 h-5 text-emerald-300" />
+                <h3 className="text-sm font-bold">VegGo Smart Assistant</h3>
+              </div>
+              <button onClick={() => setAiModalOpen(false)} className="text-white/80 hover:text-white">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 space-y-3 text-left text-xs bg-[#F4FAF4]">
+              <div className="p-3 bg-white rounded-xl border border-[#D5EAD3] text-slate-700 shadow-2xs">
+                👋 Hello Shiva! What would you like to cook today with our fresh farm arrivals?
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {["Fresh Tomato Soup Recipe", "How to keep Greens fresh", "Healthy 15-min Salads"].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => showToast(`AI Tip loaded for: ${q}`)}
+                    className="px-2.5 py-1 rounded-full bg-white border border-[#C2DEC1] text-[#135029] font-medium hover:bg-[#EAF6EA] transition text-[11px]"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="fixed inset-0 bg-black/40 -z-10" onClick={() => setAiModalOpen(false)} />
+        </div>
+      )}
+
+      {/* ================= MOBILE NAVIGATION DRAWER ================= */}
+      {mobileNav && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="w-72 bg-white h-full shadow-2xl p-5 overflow-y-auto flex flex-col text-left">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+              <img src={logoImg} alt="VegGo FRESH" className="h-9 w-auto object-contain" />
+              <button onClick={() => setMobileNav(false)} className="p-1 rounded-lg hover:bg-slate-100">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-1 flex-1">
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c.name}
+                  onClick={() => {
+                    setSelectedCategory(c.name);
+                    setMobileNav(false);
+                    showToast(`Selected ${c.name}`);
+                  }}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold ${
+                    selectedCategory === c.name ? "bg-[#EAF6EA] text-[#135029]" : "text-slate-700"
+                  }`}
+                >
+                  <c.icon className="w-4 h-4 text-[#2E7D32]" />
+                  <span>{c.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-black/40" onClick={() => setMobileNav(false)} />
         </div>
       )}
     </div>

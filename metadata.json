@@ -1,6 +1,6 @@
 {
   "name": "VegGo Fresh",
-  "description": "Farm-fresh vegetables and fruits delivery landing page with interactive cart and categories.",
+  "description": "Farm-fresh vegetables & fruits online grocery delivery platform.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
